@@ -1,0 +1,7 @@
+Algorithm Name,Array Size,Array Source,Number of Runs,Average Runtime (ns),Min Runtime (ns),Max Runtime (ns),Comparisons,Interchanges
+Bubble Sort,1000,nearly_sorted.txt,5,9345380,6615900,18763300,499500,34274
+Heap Sort,1000,nearly_sorted.txt,5,550100,503800,697900,17500,9658
+Insertion Sort,1000,nearly_sorted.txt,5,1933860,709000,3659200,35273,34274
+Merge Sort,1000,nearly_sorted.txt,5,1158680,528600,1996100,7643,9976
+Quick Sort,1000,nearly_sorted.txt,5,801580,343300,2584100,20706,7273
+Selection Sort,1000,nearly_sorted.txt,5,6921080,6097600,9819800,499500,999

@@ -1,0 +1,7 @@
+Algorithm Name,Array Size,Array Source,Number of Runs,Average Runtime (ns),Min Runtime (ns),Max Runtime (ns),Comparisons,Interchanges
+Bubble Sort,50,Random,5,204820,150000,337900,1225,628
+Heap Sort,50,Random,5,89840,74900,125500,414,242
+Insertion Sort,50,Random,5,83600,79300,88300,677,628
+Merge Sort,50,Random,5,115700,77500,171500,227,286
+Quick Sort,50,Random,5,53420,42000,74300,280,189
+Selection Sort,50,Random,5,93680,84100,106900,1225,49

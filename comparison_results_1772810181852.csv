@@ -1,0 +1,7 @@
+Algorithm Name,Array Size,Array Source,Number of Runs,Average Runtime (ns),Min Runtime (ns),Max Runtime (ns),Comparisons,Interchanges
+Bubble Sort,5000,reverse_large.txt,5,36325380,35290100,38281900,12497500,12497500
+Heap Sort,5000,reverse_large.txt,5,1262680,1246200,1271600,103227,53436
+Insertion Sort,5000,reverse_large.txt,5,25474740,17863800,54165200,12502499,12497500
+Merge Sort,5000,reverse_large.txt,5,17048540,2098300,71351000,29804,61808
+Quick Sort,5000,reverse_large.txt,5,36555740,34200500,39663300,12497500,6252499
+Selection Sort,5000,reverse_large.txt,5,15638500,15089100,16146800,12497500,4999

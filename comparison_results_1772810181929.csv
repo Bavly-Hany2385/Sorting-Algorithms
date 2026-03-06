@@ -1,0 +1,7 @@
+Algorithm Name,Array Size,Array Source,Number of Runs,Average Runtime (ns),Min Runtime (ns),Max Runtime (ns),Comparisons,Interchanges
+Bubble Sort,100,random_small.txt,5,16320,10800,28700,4950,2441
+Heap Sort,100,random_small.txt,5,22280,18200,26600,1026,582
+Insertion Sort,100,random_small.txt,5,5020,4500,6700,2540,2441
+Merge Sort,100,random_small.txt,5,140200,25000,325900,534,672
+Quick Sort,100,random_small.txt,5,11720,3400,41700,652,362
+Selection Sort,100,random_small.txt,5,10300,8200,15400,4950,99

@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-DsApplication<ds>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "assigment1.ds.ds.DsApplication",
+            "projectName": "ds",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

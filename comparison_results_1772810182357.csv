@@ -1,0 +1,7 @@
+Algorithm Name,Array Size,Array Source,Number of Runs,Average Runtime (ns),Min Runtime (ns),Max Runtime (ns),Comparisons,Interchanges
+Bubble Sort,500,single_value.txt,5,101640,94700,112200,124750,0
+Heap Sort,500,single_value.txt,5,25100,13800,59200,1494,499
+Insertion Sort,500,single_value.txt,5,2300,2000,2800,499,0
+Merge Sort,500,single_value.txt,5,181200,59700,395400,2272,4488
+Quick Sort,500,single_value.txt,5,213380,190200,278300,124750,499
+Selection Sort,500,single_value.txt,5,151680,143400,167500,124750,499
