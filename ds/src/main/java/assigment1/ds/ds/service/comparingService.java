@@ -1,6 +1,7 @@
 package assigment1.ds.ds.service;
 
-import assigment1.ds.ds.sortingAlgorithms.*;
+import assigment1.ds.ds.sortingAlgorithms.visualization;
+import assigment1.ds.ds.sortingAlgorithms.SortStats;
 import assigment1.ds.ds.DTO.*;
 
 import java.io.FileWriter;
@@ -11,52 +12,17 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 @Service
-public class comparingService {
-    private final static int maxVisualizayionSize = 100;
-    private final static int maxComparisonSize = 10000; 
+public class ComparingService {
+    private final ArrayService arrayService;
+    private final SortService sortService;
+
+    public ComparingService(ArrayService arrayService, SortService sortService) {
+        this.arrayService = arrayService;
+        this.sortService = sortService;
+    }
+
     private static final int defaultRuns = 5;
-    private static bubbleSort bubbleSort = new bubbleSort();
-    private static heapSort heapSort = new heapSort();
-    private static insertionSort insertionSort = new insertionSort();
-    private static mergeSort mergeSort = new mergeSort();
-    private static quickSort quickSort = new quickSort();
-    private static selectionSort selectionSort = new selectionSort();
     private final static String[] algorithm = {"Bubble Sort", "Heap Sort", "Insertion Sort", "Merge Sort", "Quick Sort", "Selection Sort"};
-
-    private visualization resolveAlgorithm(int type) {
-        return switch (type) {
-            case 1    -> bubbleSort;
-            case 2      -> heapSort;
-            case 3 -> insertionSort;
-            case 4     -> mergeSort;
-            case 5     -> quickSort;
-            case 6 -> selectionSort;
-            default -> throw new IllegalArgumentException("Invalid algorithm type: " + type);
-        };
-    }
-    
-    public SortingResultDTO sortWithVisualization(int[] arr, int type) {
-        if (arr.length > maxVisualizayionSize) throw new IllegalArgumentException("Array size for visualization must be between 1 and " + maxVisualizayionSize);
-        visualization sorter = resolveAlgorithm(type);
-        SortStats stats = new SortStats();
-        int[] copy = arr.clone();
-        
-        long start = System.nanoTime();
-        List <int[]> frames = sorter.sortWithFrames(copy, stats);
-        long finish = System.nanoTime() - start;
-
-        return new SortingResultDTO(algorithm[type-1], frames, copy, finish, stats);
-    }
-
-    public SortingResultDTO sortWithoutVisualization(int[] arr, int type) {
-        visualization sorter = resolveAlgorithm(type);
-        SortStats stats = new SortStats();
-        int[] copy = arr.clone();
-        long start = System.nanoTime();
-        sorter.sort(copy, null, stats);
-        long finish = System.nanoTime() - start;
-        return new SortingResultDTO(algorithm[type-1], null, copy, finish, stats);
-    }
 
     public ComparisonResultDTO compareAllAlgorithms(int[] arr, String arraySource, int runs) {
         if (runs < 1) runs = defaultRuns;
@@ -64,7 +30,7 @@ public class comparingService {
         List<AlgorithmComparisonRow> rows = new ArrayList<>();
 
         for (int i = 1; i <= 6; i++) {
-            visualization sorter = resolveAlgorithm(i);
+            visualization sorter = sortService.resolveAlgorithm(i);
 
             long   totalTime   = 0;
             long   minTime     = Long.MAX_VALUE;
@@ -96,7 +62,7 @@ public class comparingService {
     }
 
     public ComparisonResultDTO compareAllAlgorithms(int[] arr, int arrayType) {
-        return compareAllAlgorithms(arr, arraySourceLabel(arrayType), defaultRuns);
+        return compareAllAlgorithms(arr, arrayService.arraySourceLabel(arrayType), defaultRuns);
     }
 
     private void writeResultsToCsv(ComparisonResultDTO result) {
@@ -116,50 +82,5 @@ public class comparingService {
         } catch (IOException e) {
             throw new RuntimeException("Failed to write comparison CSV: " + e.getMessage(), e);
         }
-    }
-
-    public int[] generateArray(int size, int type) {
-        if(size > maxComparisonSize) throw new IllegalArgumentException("Array size must be between 1 and " + maxComparisonSize);
-        return switch (type) {
-            case 1 -> generateRandomArray(size);
-            case 2 -> generateSortedArray(size);
-            case 3 -> generateReverseSortedArray(size);
-            default -> throw new IllegalArgumentException("Invalid array type: " + type);
-        };
-    }
-
-    public String arraySourceLabel(int type) {
-        return switch (type) {
-            case 1 -> "Random";
-            case 2 -> "Sorted";
-            case 3 -> "Inversely Sorted";
-            default -> throw new IllegalArgumentException("Invalid array type: " + type);
-        };
-    }
-
-    private int[] generateRandomArray(int size) {
-        int[] arr = new int[size];
-        for (int i = 0; i < size; i++) arr[i] = (int) (Math.random() * 10000);
-        return arr;
-    }
-
-    private int[] generateSortedArray(int size) {
-        int[] arr = new int[size];
-        int val = (int) (Math.random() * 100);
-        for (int i = 0; i < size; i++) {
-            arr[i] = val;
-            val += (int) (Math.random() * 10) + 1;
-        }
-        return arr;
-    }
-
-    private int[] generateReverseSortedArray(int size) {
-        int[] arr = new int[size];
-        int val = (int) (Math.random() * 100) + size * 10;
-        for (int i = 0; i < size; i++) {
-            arr[i] = val;
-            val -= (int) (Math.random() * 10) + 1;
-        }
-        return arr;
     }
 }
