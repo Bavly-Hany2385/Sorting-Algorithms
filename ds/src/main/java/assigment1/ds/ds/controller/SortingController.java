@@ -61,8 +61,7 @@ public class SortingController {
         ComparisonResultDTO result = comparingService.compareAllAlgorithms(
             request.getArr(),
             source,
-            5,
-            request.getWriteCSV()
+            5
         );
 
         return ResponseEntity.ok(new CompareResponse(result.getRows()));
