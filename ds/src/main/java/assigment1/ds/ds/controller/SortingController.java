@@ -36,7 +36,7 @@ public class SortingController {
         SortingResultDTO result = sortService.sortWithVisualization(request.getArr(), request.getType());
         VisualizeResponse response = new VisualizeResponse(
             result.getFrames(),
-            result.getElapsedNanos(),
+            result.getFinishTimeNs(),
             new VisualizeResponse.StatsDTO(result.getStats().getComparisons(), result.getStats().getSwaps())
         );
         return ResponseEntity.ok(response);
@@ -47,7 +47,7 @@ public class SortingController {
         SortingResultDTO result = sortService.sortWithoutVisualization(request.getArr(), request.getType());
         return ResponseEntity.ok(Map.of(
             "sortedArray", result.getSortedArray(),
-            "elapsedNanos", result.getElapsedNanos(),
+            "elapsedNanos", result.getFinishTimeNs(),
             "stats", Map.of("comparisons", result.getStats().getComparisons(), "swaps",       result.getStats().getSwaps())
         ));
     }
